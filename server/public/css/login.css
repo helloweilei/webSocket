@@ -1,0 +1,56 @@
+p,div{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+#login{
+	width:500px;
+	border:1px solid #ddd;
+	position: fixed;
+	left:50%;top:50%;
+	transform: translate(-50%,-80%);
+}
+#login .title{
+	padding:10px 5px;
+	margin-bottom: 10px;
+	background:#428FEC;
+	color:#fff;
+	border-bottom: 1px solid #ddd;
+	width:100%;
+}
+.username,.password{
+	padding:10px 5px;
+	text-align: left;
+}
+.login{
+	padding-top:10px;
+	padding-left:100px;
+	margin-bottom: 10px;
+}
+.login button{
+	padding:5px 10px;
+	background: #428FEC;
+	color:#fff;
+	border:none;
+	cursor:pointer;
+}
+.login .disabled{
+	background: #fff;
+	color:#ddd;
+	border:1px solid #ddd;
+	cursor:no-drop;
+}
+.username span:first-child,
+.password span:first-child{
+	display: inline-block;
+	width:100px;
+	text-align: right;
+	margin-right:5px;
+}
+.msg{
+	color:red;
+}
+input{
+	padding-left:5px;
+	border:1px solid #ddd;
+}

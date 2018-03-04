@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<div id="login">
+	<p class="title">{{title}}</p>
+	<p class="username">
+		<span>User Name:</span> <input type="text" v-model="username" placeholder="enter your name.">
+		<span class="msg" v-if="uname_invalid">*{{uname_message}}</span>
+	</p>
+	<p class="password">
+		<span>Passwprd:</span> <input type="password" v-model="password" placeholder="enter your password.">
+		<span class="msg" v-if="password_invalid">*{{password_message}}</span>
+	</p>
+	<p class="login">
+		<button v-on:click="login" v-bind:disabled="!canLogin" v-bind:class="classObj">Login</button>
+	</p>
+</div>
+<script>
+	var vm = new Vue({
+		el:"#login",
+		data:{
+			title:"Login",
+			username:"",
+			password:"",
+			uname_invalid:true,
+			password_invalid:true,
+			canLogin:false,
+			classObj:{
+				disabled:true
+			}
+		},
+		methods:{
+			login:function(ev){
+				console.log(ev);
+			}
+		},
+		computed:{
+			uname_message:function(){
+				if(this.username == "")
+					return "Please input your name.";
+				else
+					return "The user name format in invalid!";
+			},
+			password_message:function(){
+				if(this.password == "")
+					return "Please input your password.";
+				else
+					return "The password format in invalid!";
+			}
+		},
+		watch:{
+			username:function(newVal){
+				if(/^[a-zA-Z1-9_]{6,14}$/.test(newVal)){
+					this.uname_invalid = false;
+				}
+				else{
+					this.uname_invalid = true;
+				}
+				this.canLogin = !this.uname_invalid && !this.password_invalid;
+				//this.set(this.classObj, {disabled:this.canLogin});
+				this.classObj.disabled = !this.canLogin;
+			},
+			password:function(newVal){
+				if(/^[a-zA-Z1-9_]{6,8}$/.test(newVal)){
+					this.password_invalid = false;
+				}
+				else{
+					this.password_invalid = true;
+				}
+				this.canLogin = !this.uname_invalid && !this.password_invalid;
+				//this.set(this.classObj, {disabled:this.canLogin});
+				this.classObj.disabled = !this.canLogin;
+			}
+		}
+	});
+</script>
+</body>
+</html>
